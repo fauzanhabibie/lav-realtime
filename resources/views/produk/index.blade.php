@@ -10,7 +10,11 @@
 
 
     <title>Hello, world!</title>
+
+    {{-- toastify --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    {{-- end toastify --}}
+
     {{-- pusher --}}
         <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
         <script>
@@ -26,6 +30,7 @@
             channel.bind('my-event', function(resp) {
                 notif(resp.data);
             });
+            
         </script>
     {{-- end pusher --}}
   </head>
@@ -60,6 +65,8 @@
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    {{-- script realtime --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
@@ -89,6 +96,7 @@
             //end content
         };
     </script>
+     {{-- end script realtime --}}
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
