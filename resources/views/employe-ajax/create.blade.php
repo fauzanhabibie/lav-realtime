@@ -18,6 +18,30 @@
     @endif
     <h1>Tambahkan data karyawan </h1>
 
+    <div class="container mt-4">
+      <div class="row">
+          <div class="col-12">
+           
+              <form id="create-form" action="{{ route('employee.store') }}" method="POST">
+                  @csrf
+                  <div class="mb-3">
+                      <label for="nama" class="form-label">Nik</label>
+                      <input type="text" class="form-control" id="nik" name="nik" required>
+                  </div>
+                  <div class="mb-3">
+                      <label for="deskripsi" class="form-label">Nama</label>
+                      <input type="text" class="form-control" id="nama" name="nama" rows="3" required>
+                  </div>
+                  <div class="mb-3">
+                      <label for="harga" class="form-label">Alamat</label>
+                      <textarea  class="form-control" id="alamat" name="alamat" required></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Tambah Produk</button>
+              </form>
+          </div>
+      </div>
+  </div>
+
    
 
     <!-- Optional JavaScript; choose one of the two! -->

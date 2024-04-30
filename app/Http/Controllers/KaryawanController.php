@@ -12,7 +12,9 @@ class KaryawanController extends Controller
      */
     public function index()
     {
+        $employee = Karyawan::all();
         
+        return view('employe-ajax.index', compact('employee'));
     }
 
     /**
@@ -20,7 +22,7 @@ class KaryawanController extends Controller
      */
     public function create()
     {
-        //
+        return view('employe-ajax.create');
     }
 
     /**
@@ -28,7 +30,24 @@ class KaryawanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nik' => 'required|numeric',
+            'nama' => 'required|string',
+            'alamat' => 'required|string',
+        ]);
+
+        // Simpan produk baru ke dalam database
+        $employee = Karyawan::create([
+            'nik' => $request->nik,
+            'nama' => $request->nama,
+            'alamat' => $request->alamat,
+        ]);
+
+        // Kirim respons JSON berisi data karyawan yang baru saja dibuat
+        return response()->json(['data' => $employee]);
+
+        // Kembali ke halaman sebelumnya
+        return back();
     }
 
     /**

@@ -25,6 +25,13 @@
                         </tr>
                     </thead>
                     <tbody id="content">
+                      @foreach ($employee as $item)
+                      <tr>
+                          <td>{{ $item->nik }}</td>
+                          <td>{{ $item->nama }}</td>
+                          <td>{{ $item->alamat }}</td>
+                      </tr>
+                     @endforeach
                        
                     </tbody>
                 </table>
@@ -36,6 +43,57 @@
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+          // Fungsi untuk menambahkan karyawan baru ke dalam tabel
+          function addEmployee(data) {
+            
+          }
+  
+          // Ketika form create disubmit
+          $("#create-form").submit(function(event) {
+              event.preventDefault();
+  
+              // Ambil data dari form
+              var nik = $("#nik").val();
+              var nama = $("#nama").val();
+              var alamat = $("#alamat").val();
+  
+              // Kirim data ke server menggunakan Ajax
+              $.ajax({
+                  url: "/store-employee", // Ganti dengan URL endpoint yang sesuai
+                  type: "POST",
+                  data: {
+                      nik: nik,
+                      nama: nama,
+                      alamat: alamat
+                  },
+                  success: function(response) {
+                      // Jika sukses, tambahkan karyawan ke tabel
+                      addEmployee(response.data);
+  
+                     
+                  },
+                  error: function(xhr, status, error) {
+                      // Tangani kesalahan jika terjadi
+                      console.error(xhr.responseText);
+                  }
+                
+                  $("#content").append(
+                      `<tr>
+                          <td>${data.nik}</td>
+                          <td>${data.nama}</td>
+                          <td>${data.alamat}</td>
+                      </tr>`
+                  );
+              });
+          });
+      });
+  </script>
+  
+  
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--

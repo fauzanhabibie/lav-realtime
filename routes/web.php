@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\KaryawanController;
+use App\Models\Karyawan;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,4 +23,11 @@ Route::get('/', [ProdukController::class, 'index']);
 Route::get('/produk', [ProdukController::class, 'create']); 
 Route::post('/tambahproduk',[ProdukController::class,'store'])->name('produk.store'); 
 Route::get('/tes-notifikasi', [ProdukController::class, 'tesnotif']);
+
+Route::get('/employee', [KaryawanController::class, 'index']);
+Route::get('/tambah-emp', [KaryawanController::class, 'create']); 
+Route::post('/store-employee',[KaryawanController::class,'store'])->name('employee.store'); 
+
+
+
 
