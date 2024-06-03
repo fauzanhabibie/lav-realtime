@@ -22,14 +22,20 @@
                             <th>NIK</th>
                             <th>Karyawan</th>
                             <th>Alamat</th>
+                            <th>company</th>
+                           
                         </tr>
                     </thead>
                     <tbody id="content">
-                      @foreach ($employee as $item)
+                      @foreach ($employees  as $item)
                       <tr>
-                          <td>{{ $item->nik }}</td>
-                          <td>{{ $item->nama }}</td>
-                          <td>{{ $item->alamat }}</td>
+
+                          <td>{{ $item['nik'] }}</td>
+                          <td>{{ $item['nama'] }}</td>
+                          <td>{{ $item['alamat'] }}</td>
+                          <td>{{ $item->company->nama_company ?? 'Belum ada informasi perusahaan' }}</td>
+
+                         
                       </tr>
                      @endforeach
                        
