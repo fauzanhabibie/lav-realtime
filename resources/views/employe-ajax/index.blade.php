@@ -30,10 +30,10 @@
                       @foreach ($employees  as $item)
                       <tr>
 
-                          <td>{{ $item['nik'] }}</td>
+                          <td>{{ $item['nip'] }}</td>
                           <td>{{ $item['nama'] }}</td>
                           <td>{{ $item['alamat'] }}</td>
-                          <td>{{ $item->company->nama_company ?? 'Belum ada informasi perusahaan' }}</td>
+                          <td>{{ $item['company']['nama_company'] ?? 'Belum ada informasi perusahaan' }}</td>
 
                          
                       </tr>
