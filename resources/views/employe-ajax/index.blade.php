@@ -23,21 +23,50 @@
                             <th>Karyawan</th>
                             <th>Alamat</th>
                             <th>company</th>
+                            <th>Departemen</th>
+                            <th>Jabatan</th>
+                            <th>aksi</th>
                            
                         </tr>
                     </thead>
                     <tbody id="content">
-                      @foreach ($employees  as $item)
-                      <tr>
+                        @foreach ($employees as $employee)
+                        <tr>
+                            <td>{{ $employee['nik'] }}</td>
+                            <td>{{ $employee['nama'] }}</td>
+                            <td>{{ $employee['alamat'] }}</td>
+                            <td>
+                                @foreach ($dataCompany as $company)
+                                    @if ($company['id'] == $employee['company_id'])
+                                        {{ $company['nama_company'] }}
+                                    @endif
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach ($dataDepartemen as $departemen)
+                                    @if ($departemen['id'] == $employee['departemen_id'])
+                                        {{ $departemen['nama_departemen'] }}
+                                    @endif
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach ($dataJabatan as $jabatan)
+                                    @if ($jabatan['id'] == $employee['jabatan_id'])
+                                        {{ $jabatan['nama_jabatan'] }}
+                                    @endif
+                                @endforeach
+                            </td>
+                            <td>
+                                <form action="{{ url('/api/karyawan/' . $employee['id']) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus karyawan ini?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                </form>
 
-                          <td>{{ $item['nip'] }}</td>
-                          <td>{{ $item['nama'] }}</td>
-                          <td>{{ $item['alamat'] }}</td>
-                          <td>{{ $item['company']['nama_company'] ?? 'Belum ada informasi perusahaan' }}</td>
 
-                         
-                      </tr>
-                     @endforeach
+                            </td>
+                        </tr>
+                    @endforeach
                        
                     </tbody>
                 </table>
